@@ -2,41 +2,35 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 namespace Capstone.Classes
 {
     public class VendingMachine
     {
-       
+        public decimal Balance { get; private set; }
+        //public Dictionary <string, Slot> {get;}
 
-        public VendingMachine()
+        public void FeedMoney(decimal feedMoney)
         {
+            Balance += feedMoney;
+        }
 
-            //  public Dictionary<string, List<Item>> ItemStock{get; set;}
-            //
-                Console.WriteLine("Vending Machine Main Menu");
-                Console.WriteLine("1)Display Vending Machine Items");
-                Console.WriteLine("2)Purchase");
-                Console.WriteLine("3)Exit");
-                Console.Write("Enter your choice (1, 2, 3) here:");
-                string choice = Console.ReadLine();
 
-            if (!(choice=="1") || !(choice=="2") || !(choice=="3") )
-            {
-                Console.WriteLine("Please choose again.");
-            }
 
-            ItemStock something = new ItemStock();
-            if (choice =="1")
-            {
-                foreach(Item x in something.items)
-                {
-                    Console.WriteLine(${ Price.Item}, 
-                    
-                }
-            }
+        //        //public List<>GetInventory()
+        //        {
+        //        obtains inventory
 
-            //Make menu- give choices between 1)Feed Money 2)Select Product 3) Finish Transaction 
+        //    }
+
+        //    public string Product(string item)
+        //    {
+
+        //    }
+
+        public void EndTransaction()
+        {
+            Balance = 0;
         }
     }
 }
+

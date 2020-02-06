@@ -4,13 +4,17 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    class Money
+   public class Money
     {
+        public Money(decimal bal)
+        {
+            bal = Balance;
+        }
         public decimal Balance { get; set; }
 
-       // decimal costOfItem = 0;
+        // decimal costOfItem = 0;
 
-        public void Deposit (decimal moneyGiven)
+        public void Deposit(decimal moneyGiven)
         {
             if (moneyGiven % 1 == 0)
             {
@@ -26,12 +30,12 @@ namespace Capstone.Classes
 
         }
 
-        public void Withdraw (decimal costOfItem)
+        public void Withdraw(decimal costOfItem)
         {
             Balance -= costOfItem;
-            
+
         }
 
-
     }
-}
+    }
+

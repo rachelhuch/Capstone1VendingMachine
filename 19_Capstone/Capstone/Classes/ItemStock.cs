@@ -14,10 +14,6 @@ namespace Capstone.Classes
         {
             string filePath = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\vendingmachine.csv";
 
-
-
-
-          
              
             using (StreamReader sr = new StreamReader(filePath))
             {
@@ -28,7 +24,7 @@ namespace Capstone.Classes
                     string[] fields = input.Split("|");
                     string idNumber = fields[0];
                     string itemName = fields[1];
-                    decimal price = int.Parse(fields[2]);
+                    decimal price = decimal.Parse(fields[2]);
                     string itemCategory = fields[3];
 
                     Item newItem = new Item(idNumber, itemName, price, itemCategory);

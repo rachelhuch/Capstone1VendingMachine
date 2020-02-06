@@ -1,12 +1,16 @@
 ﻿using System;
+using Capstone.Classes;
+using System.Collections.Generic;
+using Capstone;
 
 namespace Capstone
 {
     class Program
     {
-        static void Main(string[] args)
+       private static void Main()
         {
-            Console.WriteLine("Hello World!");
+            MainMenu thisOne = new MainMenu();
         }
+           
     }
 }
