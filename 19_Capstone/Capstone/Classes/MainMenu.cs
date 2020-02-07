@@ -64,6 +64,7 @@ namespace Capstone.Classes
                         decimal moneyIn = decimal.Parse(Console.ReadLine());
 
                         vm.FeedMoney(moneyIn);
+                        Console.WriteLine($"Your balance is {vm.Balance:C}");
                     }
                     else if (selection == "2")
                     {
@@ -79,10 +80,25 @@ namespace Capstone.Classes
 
                         //some fancy CW 
                         Console.WriteLine($"Enjoy your {vm.inventory[keyNumber].ItemName}");
-                        Console.WriteLine($"YOur balance is {vm.Balance}");
+                        
                         //chomp chop stuff
-
-
+                        if (vm.inventory[keyNumber].ItemCategory == "Chip")
+                        {
+                            Console.WriteLine("\t Crunch Crunch, Yum!");
+                        }
+                        if (vm.inventory[keyNumber].ItemCategory == "Candy")
+                        {
+                            Console.WriteLine("\t Munch Munch, Yum!");
+                        }
+                        if (vm.inventory[keyNumber].ItemCategory == "Drink")
+                        {
+                            Console.WriteLine("\t Glug Glug, Yum!");
+                        }
+                        if (vm.inventory[keyNumber].ItemCategory == "Gum")
+                        {
+                            Console.WriteLine("\t Chew Chew, Yum!");
+                        }
+                        Console.WriteLine($"Your balance is {vm.Balance:C}");
                     }
                     else
                     {
