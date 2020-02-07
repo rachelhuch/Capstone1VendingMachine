@@ -31,7 +31,7 @@ namespace Capstone
             else if(choice =="2")
             {
                 //select product
-                ItemStock something = new ItemStock();
+                Slot something = new Slot();
                 if (choice == "1")
                 {
                     foreach (Item x in something.items)

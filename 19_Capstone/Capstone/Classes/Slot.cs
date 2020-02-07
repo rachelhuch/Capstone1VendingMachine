@@ -1,13 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using Capstone.Classes;
+
 
 namespace Capstone.Classes
 {
-    class Slot
+    public class Slot
     {
-        //quantity
+        public string IdNumber { get; set; }
+        public string ItemName { get; set; }
+        public decimal Price { get; set; }
+        public string ItemCategory { get; set; }
+        public int Quantity { get; set; }
 
-        //product
+        public Slot(string idNumber, string itemName, decimal price, string itemCategory, int quantity) 
+        {
+            IdNumber = idNumber;
+            ItemName = itemName;
+            Price = price;
+            ItemCategory = itemCategory;
+            Quantity = quantity;
+        }
+        
+        //public void Index(string index) {}
+        //public Slot()
+        //{ 
+        ////public List<Item> items = new List<Item>();
+        
+        
+        
+        
+   
+        //}
     }
 }

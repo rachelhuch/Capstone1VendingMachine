@@ -29,7 +29,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Please choose again.");
             }
 
-            ItemStock something = new ItemStock();
+            Slot something = new Slot();
                 if (choice == "1")
                 {
                     foreach (Item x in something.items)
