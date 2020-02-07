@@ -12,7 +12,7 @@ namespace Capstone.Classes
 
         public MainMenu(VendingMachine theVm)
         {
-          
+
 
 
 
@@ -31,7 +31,7 @@ namespace Capstone.Classes
                 Console.Write("Enter your choice (1, 2, 3) here: ");
                 string choice = Console.ReadLine();
 
-                if (!(choice == "3" || choice == "2" || choice == "1"))
+                if (!(choice == "4" || choice == "3" || choice == "2" || choice == "1"))
                 {
                     Console.WriteLine("Please choose again.");
                 }
@@ -64,12 +64,9 @@ namespace Capstone.Classes
 
                             string selection = Console.ReadLine();
 
-                           // if (!(choice == "3" || choice == "2" || choice == "1"))
-                           // {
-                             //   Console.WriteLine("Please choose again.");
-                            //}
 
-                            
+
+
                             {
                                 if (selection == "1")
                                 {
@@ -101,48 +98,57 @@ namespace Capstone.Classes
                                     {
                                         Console.WriteLine("Invalid entry. Please enter your product. ex. A1");
                                     }
+
                                     else
                                     {
-                                        if (vm.Balance < vm.inventory[keyNumber].Price)
+                                        if (vm.inventory[keyNumber].Quantity > 0)
                                         {
-                                            Console.WriteLine("Please add more money.");
-                                        }
+                                            if (vm.Balance < vm.inventory[keyNumber].Price)
+                                            {
+                                                Console.WriteLine("Please add more money.");
+                                            }
 
+                                            else
+                                            {
+                                                vm.WriteToLog($"{vm.inventory[keyNumber].ItemName} {vm.Balance} { vm.Balance - vm.inventory[keyNumber].Price}");
+                                                //decriment balance by item.value.price
+                                                vm.Balance -= vm.inventory[keyNumber].Price;
+
+                                                //decriment item.value.quanity by 1
+                                                vm.inventory[keyNumber].Quantity -= 1;
+
+                                                //some fancy CW 
+                                                Console.WriteLine($"Enjoy your {vm.inventory[keyNumber].ItemName}");
+
+
+                                                //chomp chop stuff
+                                                if (vm.inventory[keyNumber].ItemCategory == "Chip")
+                                                {
+                                                    Console.WriteLine("\t Crunch Crunch, Yum!");
+                                                }
+                                                if (vm.inventory[keyNumber].ItemCategory == "Candy")
+                                                {
+                                                    Console.WriteLine("\t Munch Munch, Yum!");
+                                                }
+                                                if (vm.inventory[keyNumber].ItemCategory == "Drink")
+                                                {
+                                                    Console.WriteLine("\t Glug Glug, Yum!");
+                                                }
+                                                if (vm.inventory[keyNumber].ItemCategory == "Gum")
+                                                {
+                                                    Console.WriteLine("\t Chew Chew, Yum!");
+                                                }
+                                                Console.WriteLine($"Your balance is {vm.Balance:C}");
+                                            }
+
+                                        }
                                         else
                                         {
-                                            vm.WriteToLog($"{vm.inventory[keyNumber].ItemName} {vm.Balance} { vm.Balance - vm.inventory[keyNumber].Price}");
-                                            //decriment balance by item.value.price
-                                            vm.Balance -= vm.inventory[keyNumber].Price;
-
-                                            //decriment item.value.quanity by 1
-                                            vm.inventory[keyNumber].Price -= 1;
-
-                                            //some fancy CW 
-                                            Console.WriteLine($"Enjoy your {vm.inventory[keyNumber].ItemName}");
-                                            
-
-                                            //chomp chop stuff
-                                            if (vm.inventory[keyNumber].ItemCategory == "Chip")
-                                            {
-                                                Console.WriteLine("\t Crunch Crunch, Yum!");
-                                            }
-                                            if (vm.inventory[keyNumber].ItemCategory == "Candy")
-                                            {
-                                                Console.WriteLine("\t Munch Munch, Yum!");
-                                            }
-                                            if (vm.inventory[keyNumber].ItemCategory == "Drink")
-                                            {
-                                                Console.WriteLine("\t Glug Glug, Yum!");
-                                            }
-                                            if (vm.inventory[keyNumber].ItemCategory == "Gum")
-                                            {
-                                                Console.WriteLine("\t Chew Chew, Yum!");
-                                            }
-                                            Console.WriteLine($"Your balance is {vm.Balance:C}");
+                                            Console.WriteLine("Sold Out!");
                                         }
                                     }
                                 }
-                                else if(selection =="3")
+                                else if (selection == "3")
                                 {
                                     Console.WriteLine($"Your change is {vm.Balance}");
                                     vm.EndTransaction();
@@ -161,32 +167,50 @@ namespace Capstone.Classes
                         Console.WriteLine("Thank you for using the best vending machine on the planet!");
                         variable = 2;
                     }
-                    else if(choice =="4")
+                    else if (choice == "4")
                     {
-                        string path = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\bin\Debug\netcoreapp2.1\Log.txt";
-                        using (StreamReader sr = new StreamReader(path))
+                        decimal sales = 0;
+                        foreach (KeyValuePair<string, Slot> item in vm.inventory)
                         {
-                            while(!sr.EndOfStream)
-                            {
-                                string x = sr.ReadLine();
-                                string[] stream = x.Split(" ");
+                            int quant = 5 - (vm.inventory[item.Key].Quantity);
+                            Console.WriteLine($"{vm.inventory[item.Key].ItemName}, {quant}");
+                            sales = sales + (quant * (vm.inventory[item.Key].Price));
 
-                                
-                                Dictionary<string, int> salesReport = new Dictionary<string, int>();
-                                int value = 1;
-                                foreach (var item in stream)
-                                {
-                                    if (salesReport.ContainsKey(item))
-                                    {
-                                        salesReport[item] = (salesReport.Values) + 1;
-                                    }
-                                    else
-                                    {
-                                        salesReport.Add(item,value);
-                                    }
-                                }
-                            }
+
                         }
+                        Console.WriteLine(sales);
+
+
+
+
+                        //string path = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\bin\Debug\netcoreapp2.1\Log.txt";
+                        //using (StreamReader sr = new StreamReader(path))
+                        //{
+                        //    while(!sr.EndOfStream)
+                        //    {
+                        //        string x = sr.ReadLine();
+                        //        string[] stream = x.Split(" ");
+
+
+                        //        Dictionary<string, int> salesReport = new Dictionary<string, int>();
+                        //        int value = 1;
+                        //        foreach (string item in stream)
+                        //        {
+                        //            if (salesReport.ContainsKey(item))
+                        //            {
+                        //                salesReport[item] += 1;
+                        //            }
+                        //            else
+                        //            {
+                        //                salesReport.Add(item,value);
+                        //            }
+                        //        }
+                        //        foreach (var item in c)
+                        //        {
+
+                        //        }
+                        //    }
+                        //}
                     }
                 }
             }
