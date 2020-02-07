@@ -24,15 +24,5 @@ namespace Capstone.Classes
             Quantity = quantity;
         }
         
-        //public void Index(string index) {}
-        //public Slot()
-        //{ 
-        ////public List<Item> items = new List<Item>();
-        
-        
-        
-        
-   
-        //}
     }
 }

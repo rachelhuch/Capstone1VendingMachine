@@ -7,8 +7,8 @@ namespace Capstone.Classes
 {
     public class MainMenu
     {
-
         
+
         public MainMenu()
         {
             int variable = 1;
@@ -29,43 +29,73 @@ namespace Capstone.Classes
                 Console.WriteLine("Please choose again.");
             }
 
-            Slot something = new Slot();
+                VendingMachine thisOne = new VendingMachine();
+                
+                
                 if (choice == "1")
                 {
-                    foreach (Item x in something.items)
+                    foreach (KeyValuePair<string, Slot> item in thisOne.inventory)
+              
                     {
-                        Console.WriteLine($"{ x.IDNumber}\t{ x.ItemName}\t{ x.Price}");
-
+                        Console.WriteLine($"{item.Key}\t{ item.Value.ItemName}\t{item.Value.Price}");
                     }
                 }
 
                 else if (choice == "2")
                 {
-                    //go to new menu
+                    
+                    Console.WriteLine("Purchase Menu");
+                    Console.WriteLine("1)Feed Money");
+                    Console.WriteLine("2) Select Product");
+                    Console.WriteLine("3) Finish Transaction");
+                    Console.Write("Enter your choice (1, 2, 3) here: ");
+
+                    string selection = Console.ReadLine();
+
+                    if (int.Parse(selection) > 3)
+                    {
+                        Console.WriteLine("Please choose again.");
+                    }
+                    else if (selection == "1")
+                    {
+                        Console.Write("How much are you depositing?\t");
+
+                        decimal moneyIn = decimal.Parse(Console.ReadLine());
+
+                        thisOne.FeedMoney(moneyIn);
+                    }
+                    else if (selection == "2")
+                    {
+                        //select product
+                        //Slot something = new Slot();
+                        //if (choice == "1")
+                        //{
+                        //    foreach (Item x in something.items)
+                        //    {
+                        //        Console.WriteLine($"{ x.IDNumber}\t{ x.ItemName}\t{ x.Price}");
+                        //        //add quantity
+                        //        //dictionary
+                        //        //slot
+
+                        //    }
+                        //}
+
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Your change is {thisOne.Balance}");
+                        thisOne.EndTransaction();
+
+                    }
                 }
                 //Make menu- give choices between 1)Feed Money 2)Select Product 3) Finish Transaction 
                 else if (choice == "3")
                 {
-                 
+                    Console.WriteLine("Thank you for using the best vending machine on the planet!");
                     variable = 2;
                 }
             }
             }
-
-
-        //Vending Machine
-       //get private set balance:decimal
-       // inventory-dictionary, <string, slot>        product-string name, decimal price, ,  ---Consume Method(returns string"YUM") (Candy, Chips, etc extend product)
-       //     method
-       //     feedMoney(int)
-       //     MainMenu(list)
-       //     MainMenu(string-slotId)-returns Product
-       //     endTransaction-return change as string
-
-       //     slot
-       //     quantity:int
-       //     product:product
-       //     private load method- read the file and load up 5 of everything
 
 
     }

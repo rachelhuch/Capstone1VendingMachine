@@ -11,12 +11,12 @@ namespace Capstone.Classes
         public Dictionary<string, Slot> inventory = new Dictionary<string, Slot>();
 
 
-        public void FeedMoney(decimal feedMoney)
+        public decimal FeedMoney(decimal feedMoney)
         {
-            Balance += feedMoney;
+            return Balance += feedMoney;
         }
 
-        string filePath = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\vendingmachine.csv";
+        string file = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\vendingmachine.csv";
 
         private void Load(string filePath)
         {
@@ -40,9 +40,13 @@ namespace Capstone.Classes
         }
 
         public void EndTransaction()
-{
-    Balance = 0;
-}
+        {
+            Balance = 0;
+        }
+        public VendingMachine()
+        {
+            Load(file);
+        }
     }
 }
 
