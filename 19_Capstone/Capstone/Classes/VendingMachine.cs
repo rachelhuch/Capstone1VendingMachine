@@ -46,7 +46,7 @@ namespace Capstone.Classes
         public void EndTransaction()
         {
             
-            WriteToLog($"GIVECHANGE{ Balance}, $0.00");
+            WriteToLog($"GIVECHANGE { Balance}, $0.00");
             Balance = 0;
         }
         public VendingMachine()

@@ -110,7 +110,7 @@ namespace Capstone.Classes
 
                                         else
                                         {
-                                            vm.WriteToLog($"{vm.inventory[keyNumber].ItemName}{vm.Balance}{ vm.Balance - vm.inventory[keyNumber].Price}");
+                                            vm.WriteToLog($"{vm.inventory[keyNumber].ItemName} {vm.Balance} { vm.Balance - vm.inventory[keyNumber].Price}");
                                             //decriment balance by item.value.price
                                             vm.Balance -= vm.inventory[keyNumber].Price;
 
@@ -168,22 +168,22 @@ namespace Capstone.Classes
                         {
                             while(!sr.EndOfStream)
                             {
-                                Dictionary<string, int> salesReport = new Dictionary<string, int>();
-                                string key;
-                                int value;
-                                string[] stream = sr.Split(" ");
+                                string x = sr.ReadLine();
+                                string[] stream = x.Split(" ");
 
-                                foreach (var item in sr)
+                                
+                                Dictionary<string, int> salesReport = new Dictionary<string, int>();
+                                int value = 1;
+                                foreach (var item in stream)
                                 {
-                                   
-                                }
-                                if (salesReport.ContainsKey(key))
-                                {
-                                    value++;
-                                }
-                                else
-                                {
-                                    salesReport.Add();
+                                    if (salesReport.ContainsKey(item))
+                                    {
+                                        salesReport[item] = (salesReport.Values) + 1;
+                                    }
+                                    else
+                                    {
+                                        salesReport.Add(item,value);
+                                    }
                                 }
                             }
                         }
