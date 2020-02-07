@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 
 namespace Capstone.Classes
@@ -11,6 +12,11 @@ namespace Capstone.Classes
 
         public MainMenu(VendingMachine theVm)
         {
+          
+
+
+
+
             this.vm = theVm;
             int variable = 1;
             while (variable == 1)
@@ -58,12 +64,12 @@ namespace Capstone.Classes
 
                             string selection = Console.ReadLine();
 
-                            if (!(choice == "3" || choice == "2" || choice == "1"))
-                            {
-                                Console.WriteLine("Please choose again.");
-                            }
+                           // if (!(choice == "3" || choice == "2" || choice == "1"))
+                           // {
+                             //   Console.WriteLine("Please choose again.");
+                            //}
 
-                            else
+                            
                             {
                                 if (selection == "1")
                                 {
@@ -104,14 +110,16 @@ namespace Capstone.Classes
 
                                         else
                                         {
-                                            //decroment balance by item.value.price
+                                            vm.WriteToLog($"{vm.inventory[keyNumber].ItemName}{vm.Balance}{ vm.Balance - vm.inventory[keyNumber].Price}");
+                                            //decriment balance by item.value.price
                                             vm.Balance -= vm.inventory[keyNumber].Price;
 
-                                            //decroment item.value.quanity by 1
+                                            //decriment item.value.quanity by 1
                                             vm.inventory[keyNumber].Price -= 1;
 
                                             //some fancy CW 
                                             Console.WriteLine($"Enjoy your {vm.inventory[keyNumber].ItemName}");
+                                            
 
                                             //chomp chop stuff
                                             if (vm.inventory[keyNumber].ItemCategory == "Chip")
@@ -134,11 +142,15 @@ namespace Capstone.Classes
                                         }
                                     }
                                 }
-                                else
+                                else if(selection =="3")
                                 {
                                     Console.WriteLine($"Your change is {vm.Balance}");
                                     vm.EndTransaction();
                                     menu2 = 2;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Please select again");
                                 }
                             }
                         }
@@ -148,6 +160,33 @@ namespace Capstone.Classes
                     {
                         Console.WriteLine("Thank you for using the best vending machine on the planet!");
                         variable = 2;
+                    }
+                    else if(choice =="4")
+                    {
+                        string path = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\bin\Debug\netcoreapp2.1\Log.txt";
+                        using (StreamReader sr = new StreamReader(path))
+                        {
+                            while(!sr.EndOfStream)
+                            {
+                                Dictionary<string, int> salesReport = new Dictionary<string, int>();
+                                string key;
+                                int value;
+                                string[] stream = sr.Split(" ");
+
+                                foreach (var item in sr)
+                                {
+                                   
+                                }
+                                if (salesReport.ContainsKey(key))
+                                {
+                                    value++;
+                                }
+                                else
+                                {
+                                    salesReport.Add();
+                                }
+                            }
+                        }
                     }
                 }
             }

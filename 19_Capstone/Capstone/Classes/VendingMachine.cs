@@ -16,6 +16,8 @@ namespace Capstone.Classes
         public void FeedMoney(decimal feedMoney)
         {
              Balance += feedMoney;
+            WriteToLog($"FEEDMONEY: { feedMoney} { Balance}");
+
         }
 
         string file = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\vendingmachine.csv";
@@ -43,6 +45,8 @@ namespace Capstone.Classes
 
         public void EndTransaction()
         {
+            
+            WriteToLog($"GIVECHANGE{ Balance}, $0.00");
             Balance = 0;
         }
         public VendingMachine()
@@ -50,6 +54,18 @@ namespace Capstone.Classes
             Load(file);
             Balance = 0;
         }
+
+        public void WriteToLog(string input)
+        {
+            string timestamp = DateTime.Now.ToString();
+            string output = ($"{timestamp}{input}");
+            using (StreamWriter sw = new StreamWriter("Log.txt", true))
+            {
+                sw.WriteLine(output);
+            }
+        }
+
+     
     }
 }
 
