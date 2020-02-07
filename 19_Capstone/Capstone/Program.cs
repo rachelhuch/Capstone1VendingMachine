@@ -7,9 +7,11 @@ namespace Capstone
 {
     class Program
     {
-       private static void Main()
+      
+        private static void Main()
         {
-            MainMenu thisOne = new MainMenu();
+            VendingMachine vm = new VendingMachine();
+            MainMenu thisOne = new MainMenu(vm);
         }
            
     }

@@ -7,13 +7,15 @@ namespace Capstone.Classes
 {
     public class VendingMachine
     {
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; set; }
+        
+
         public Dictionary<string, Slot> inventory = new Dictionary<string, Slot>();
 
 
-        public decimal FeedMoney(decimal feedMoney)
+        public void FeedMoney(decimal feedMoney)
         {
-            return Balance += feedMoney;
+             Balance += feedMoney;
         }
 
         string file = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\vendingmachine.csv";
@@ -46,6 +48,7 @@ namespace Capstone.Classes
         public VendingMachine()
         {
             Load(file);
+            Balance = 0;
         }
     }
 }

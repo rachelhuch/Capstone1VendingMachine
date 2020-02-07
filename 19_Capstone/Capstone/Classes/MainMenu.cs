@@ -7,10 +7,11 @@ namespace Capstone.Classes
 {
     public class MainMenu
     {
-        
+        private VendingMachine vm;
 
-        public MainMenu()
+        public MainMenu(VendingMachine theVm)
         {
+            this.vm = theVm;
             int variable = 1;
             while (variable ==1)
             { 
@@ -29,12 +30,12 @@ namespace Capstone.Classes
                 Console.WriteLine("Please choose again.");
             }
 
-                VendingMachine thisOne = new VendingMachine();
+                
                 
                 
                 if (choice == "1")
                 {
-                    foreach (KeyValuePair<string, Slot> item in thisOne.inventory)
+                    foreach (KeyValuePair<string, Slot> item in vm.inventory)
               
                     {
                         Console.WriteLine($"{item.Key}\t{ item.Value.ItemName}\t{item.Value.Price}");
@@ -62,29 +63,31 @@ namespace Capstone.Classes
 
                         decimal moneyIn = decimal.Parse(Console.ReadLine());
 
-                        thisOne.FeedMoney(moneyIn);
+                        vm.FeedMoney(moneyIn);
                     }
                     else if (selection == "2")
                     {
-                        //select product
-                        //Slot something = new Slot();
-                        //if (choice == "1")
-                        //{
-                        //    foreach (Item x in something.items)
-                        //    {
-                        //        Console.WriteLine($"{ x.IDNumber}\t{ x.ItemName}\t{ x.Price}");
-                        //        //add quantity
-                        //        //dictionary
-                        //        //slot
+                        // select product (item.key)
+                        Console.Write("What is your product?\t ex (A1)\t");
+                        string keyNumber = Console.ReadLine();
 
-                        //    }
-                        //}
+                        //decroment balance by item.value.price
+                        vm.Balance -= vm.inventory[keyNumber].Price;
+
+                        //decroment item.value.quanity by 1
+                        vm.inventory[keyNumber].Price -= 1;
+
+                        //some fancy CW 
+                        Console.WriteLine($"Enjoy your {vm.inventory[keyNumber].ItemName}");
+                        Console.WriteLine($"YOur balance is {vm.Balance}");
+                        //chomp chop stuff
+
 
                     }
                     else
                     {
-                        Console.WriteLine($"Your change is {thisOne.Balance}");
-                        thisOne.EndTransaction();
+                        Console.WriteLine($"Your change is {vm.Balance}");
+                        vm.EndTransaction();
 
                     }
                 }
