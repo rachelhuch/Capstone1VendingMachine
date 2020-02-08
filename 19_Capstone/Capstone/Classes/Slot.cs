@@ -23,6 +23,5 @@ namespace Capstone.Classes
             ItemCategory = itemCategory;
             Quantity = quantity;
         }
-        
     }
 }

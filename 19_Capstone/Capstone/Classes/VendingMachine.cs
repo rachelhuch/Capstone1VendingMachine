@@ -12,12 +12,10 @@ namespace Capstone.Classes
 
         public Dictionary<string, Slot> inventory = new Dictionary<string, Slot>();
 
-
         public void FeedMoney(decimal feedMoney)
         {
              Balance += feedMoney;
             WriteToLog($"FEEDMONEY: { feedMoney} { Balance}");
-
         }
 
         string file = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\vendingmachine.csv";
@@ -26,7 +24,6 @@ namespace Capstone.Classes
         {
             using (StreamReader sr = new StreamReader(filePath))
             {
-
                 while (!sr.EndOfStream)
                 {
                     string input = sr.ReadLine();
@@ -38,14 +35,11 @@ namespace Capstone.Classes
 
                     Slot slot = new Slot(idNumber, itemName, price, itemCategory, 5);
                     inventory.Add(idNumber, slot);
-
                 }
             }
         }
-
         public void EndTransaction()
         {
-            
             WriteToLog($"GIVECHANGE {Balance}, $0.00");
             Balance = 0;
         }
@@ -64,8 +58,6 @@ namespace Capstone.Classes
                 sw.WriteLine(output);
             }
         }
-
-     
     }
 }
 

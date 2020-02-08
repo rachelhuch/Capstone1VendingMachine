@@ -25,6 +25,7 @@ namespace Capstone.Classes
                 Console.WriteLine("3)Exit");
                 Console.Write("Enter your choice (1, 2, 3) here: ");
                 string choice = Console.ReadLine();
+                Console.WriteLine();
 
                 if (!(choice == "4" || choice == "3" || choice == "2" || choice == "1"))
                 {
@@ -47,13 +48,17 @@ namespace Capstone.Classes
                         int menu2 = 1;
                         while (menu2 == 1)
                         {
-                            Console.WriteLine("\tPurchase Menu");
-                            Console.WriteLine("\t1)Feed Money");
+                            Console.WriteLine();
+                            Console.WriteLine("\t*******************************");
+                            Console.WriteLine("\t\t Purchase Menu");
+                            Console.WriteLine("\t*******************************");
+                            Console.WriteLine("\t1) Feed Money");
                             Console.WriteLine("\t2) Select Product");
                             Console.WriteLine("\t3) Finish Transaction");
                             Console.Write("\tEnter your choice (1, 2, 3) here: ");
 
                             string selection = Console.ReadLine();
+                            Console.WriteLine();
                             {
                                 if (selection == "1")
                                 {
@@ -63,7 +68,7 @@ namespace Capstone.Classes
 
                                     if (!(moneyIn % 1 == 0))
                                     {
-                                        Console.WriteLine("****Not valid. Please enter whole dollar amounts****");
+                                        Console.WriteLine("\t****Not valid. Please enter whole dollar amounts****");
                                     }
                                     else
                                     {
@@ -79,7 +84,7 @@ namespace Capstone.Classes
                                     keyNumber = keyNumber.ToUpper();
                                     if (!(vm.inventory.ContainsKey(keyNumber)))
                                     {
-                                        Console.WriteLine("****Invalid entry. Please enter your product. ex. A1****");
+                                        Console.WriteLine("\t****Invalid entry. Please enter your product. ex. A1****");
                                     }
 
                                     else
@@ -88,8 +93,8 @@ namespace Capstone.Classes
                                         {
                                             if (vm.Balance < vm.inventory[keyNumber].Price)
                                             {
-                                                Console.WriteLine($"****Your Balance is {vm.Balance:C}****{keyNumber} costs {vm.inventory[keyNumber].Price}**** .");
-                                                Console.WriteLine("****Please add more money****");
+                                                Console.WriteLine($"\t****Your Balance is {vm.Balance:C}****{keyNumber} costs {vm.inventory[keyNumber].Price}**** .");
+                                                Console.WriteLine("\t****Please add more money****");
                                             }
 
                                             else
@@ -127,20 +132,20 @@ namespace Capstone.Classes
                                         }
                                         else
                                         {
-                                            Console.WriteLine($"\t {vm.inventory[keyNumber].ItemName} is Sold Out!");
-                                            Console.WriteLine("\t Please make another selection.");
+                                            Console.WriteLine($"\t ****{vm.inventory[keyNumber].ItemName} is Sold Out!****");
+                                            Console.WriteLine("\t ****Please make another selection.****");
                                         }
                                     }
                                 }
                                 else if (selection == "3")
                                 {
-                                    Console.WriteLine($"\t Your change is {vm.Balance}");
+                                    Console.WriteLine($"\t Your change is {vm.Balance:C}");
                                     vm.EndTransaction();
                                     menu2 = 2;
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"\t Your selection is invalad, Please select again");
+                                    Console.WriteLine($"\t ****Your selection is invalad, Please select again****");
                                 }
                             }
                         }
