@@ -49,9 +49,9 @@ namespace Capstone.Classes
                         while (menu2 == 1)
                         {
                             Console.WriteLine();
-                            Console.WriteLine("\t*******************************");
-                            Console.WriteLine("\t\t Purchase Menu");
-                            Console.WriteLine("\t*******************************");
+                            Console.WriteLine("\t**********************************");
+                            Console.WriteLine($"\t Purchase Menu\t Balance: {vm.Balance:C}");
+                            Console.WriteLine("\t**********************************");
                             Console.WriteLine("\t1) Feed Money");
                             Console.WriteLine("\t2) Select Product");
                             Console.WriteLine("\t3) Finish Transaction");
@@ -74,7 +74,7 @@ namespace Capstone.Classes
                                     {
                                         vm.FeedMoney(moneyIn);
                                     }
-                                    Console.WriteLine($"\tYour balance is {vm.Balance:C}");
+                                    Console.WriteLine($"\tYour new balance is {vm.Balance:C}");
                                 }
                                 else if (selection == "2")
                                 {
@@ -127,7 +127,7 @@ namespace Capstone.Classes
                                                 {
                                                     Console.WriteLine("\t Chew Chew, Yum!");
                                                 }
-                                                Console.WriteLine($"\t Your balance is {vm.Balance:C}");
+                                                Console.WriteLine($"\t Your new balance is {vm.Balance:C}");
                                             }
                                         }
                                         else
