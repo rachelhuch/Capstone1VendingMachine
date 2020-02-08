@@ -39,7 +39,7 @@ namespace Capstone.Classes
                         foreach (KeyValuePair<string, Slot> item in vm.inventory)
 
                         {
-                            Console.WriteLine($"\t{item.Key} { item.Value.ItemName, 20}\t {item.Value.Price}");
+                            Console.WriteLine($"\t{item.Key} { item.Value.ItemName,20}\t {item.Value.Price}");
                         }
                     }
 
@@ -64,17 +64,25 @@ namespace Capstone.Classes
                                 {
                                     Console.Write("\tHow much are you depositing?\t");
 
-                                    decimal moneyIn = decimal.Parse(Console.ReadLine());
+                                    try
+                                    {
+                                        decimal moneyIn = decimal.Parse(Console.ReadLine());
 
-                                    if (!(moneyIn % 1 == 0))
-                                    {
-                                        Console.WriteLine("\t****Not valid. Please enter whole dollar amounts****");
+                                        if (!(moneyIn % 1 == 0))
+                                        {
+                                            Console.WriteLine("\t****Not valid. Please enter whole dollar amounts****");
+                                        }
+                                        else
+                                        {
+                                            vm.FeedMoney(moneyIn);
+                                        }
+                                        Console.WriteLine($"\tYour new balance is {vm.Balance:C}");
                                     }
-                                    else
+                                    catch (Exception)
                                     {
-                                        vm.FeedMoney(moneyIn);
+                                        Console.WriteLine("\t****Not valid. Please enter whole numeric dollar amounts****");
                                     }
-                                    Console.WriteLine($"\tYour new balance is {vm.Balance:C}");
+
                                 }
                                 else if (selection == "2")
                                 {
