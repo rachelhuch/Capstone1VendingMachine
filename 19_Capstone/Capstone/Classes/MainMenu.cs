@@ -12,17 +12,12 @@ namespace Capstone.Classes
 
         public MainMenu(VendingMachine theVm)
         {
-
-
-
-
-
             this.vm = theVm;
             int variable = 1;
             while (variable == 1)
             {
-                //  public Dictionary<string, List<Item>> ItemStock{get; set;}
-                //
+                Console.WriteLine();
+                Console.WriteLine("*******************************");
                 Console.WriteLine("   Vending Machine Main Menu   ");
                 Console.WriteLine("*******************************");
                 Console.WriteLine("1)Display Vending Machine Items");
@@ -33,21 +28,17 @@ namespace Capstone.Classes
 
                 if (!(choice == "4" || choice == "3" || choice == "2" || choice == "1"))
                 {
-                    Console.WriteLine("Please choose again.");
+                    Console.WriteLine("****Please choose again.****");
                 }
-
                 else
                 {
-
-
-
-
                     if (choice == "1")
                     {
+                        Console.WriteLine("Product Code\tProduct Name\tPrice");
                         foreach (KeyValuePair<string, Slot> item in vm.inventory)
 
                         {
-                            Console.WriteLine($"{item.Key}\t{ item.Value.ItemName}\t{item.Value.Price}");
+                            Console.WriteLine($"\t{item.Key} { item.Value.ItemName, 20}\t {item.Value.Price}");
                         }
                     }
 
@@ -56,47 +47,39 @@ namespace Capstone.Classes
                         int menu2 = 1;
                         while (menu2 == 1)
                         {
-                            Console.WriteLine("Purchase Menu");
-                            Console.WriteLine("1)Feed Money");
-                            Console.WriteLine("2) Select Product");
-                            Console.WriteLine("3) Finish Transaction");
-                            Console.Write("Enter your choice (1, 2, 3) here: ");
+                            Console.WriteLine("\tPurchase Menu");
+                            Console.WriteLine("\t1)Feed Money");
+                            Console.WriteLine("\t2) Select Product");
+                            Console.WriteLine("\t3) Finish Transaction");
+                            Console.Write("\tEnter your choice (1, 2, 3) here: ");
 
                             string selection = Console.ReadLine();
-
-
-
-
                             {
                                 if (selection == "1")
                                 {
-                                    Console.Write("How much are you depositing?\t");
+                                    Console.Write("\tHow much are you depositing?\t");
 
                                     decimal moneyIn = decimal.Parse(Console.ReadLine());
 
                                     if (!(moneyIn % 1 == 0))
                                     {
-                                        Console.WriteLine("Not valid. Please enter whole dollar amounts");
+                                        Console.WriteLine("****Not valid. Please enter whole dollar amounts****");
                                     }
                                     else
                                     {
                                         vm.FeedMoney(moneyIn);
                                     }
-
-
-
-
-                                    Console.WriteLine($"Your balance is {vm.Balance:C}");
+                                    Console.WriteLine($"\tYour balance is {vm.Balance:C}");
                                 }
                                 else if (selection == "2")
                                 {
                                     // select product (item.key)
-                                    Console.Write("What is your product?\t ex (A1)\t");
+                                    Console.Write("\tWhat is your product?\t ex (A1)\t");
                                     string keyNumber = Console.ReadLine();
                                     keyNumber = keyNumber.ToUpper();
                                     if (!(vm.inventory.ContainsKey(keyNumber)))
                                     {
-                                        Console.WriteLine("Invalid entry. Please enter your product. ex. A1");
+                                        Console.WriteLine("****Invalid entry. Please enter your product. ex. A1****");
                                     }
 
                                     else
@@ -105,7 +88,8 @@ namespace Capstone.Classes
                                         {
                                             if (vm.Balance < vm.inventory[keyNumber].Price)
                                             {
-                                                Console.WriteLine("Please add more money.");
+                                                Console.WriteLine($"****Your Balance is {vm.Balance:C}****{keyNumber} costs {vm.inventory[keyNumber].Price}**** .");
+                                                Console.WriteLine("****Please add more money****");
                                             }
 
                                             else
@@ -118,7 +102,7 @@ namespace Capstone.Classes
                                                 vm.inventory[keyNumber].Quantity -= 1;
 
                                                 //some fancy CW 
-                                                Console.WriteLine($"Enjoy your {vm.inventory[keyNumber].ItemName}");
+                                                Console.WriteLine($"\t Enjoy your {vm.inventory[keyNumber].ItemName}");
 
 
                                                 //chomp chop stuff
@@ -138,33 +122,32 @@ namespace Capstone.Classes
                                                 {
                                                     Console.WriteLine("\t Chew Chew, Yum!");
                                                 }
-                                                Console.WriteLine($"Your balance is {vm.Balance:C}");
+                                                Console.WriteLine($"\t Your balance is {vm.Balance:C}");
                                             }
-
                                         }
                                         else
                                         {
-                                            Console.WriteLine("Sold Out!");
+                                            Console.WriteLine($"\t {vm.inventory[keyNumber].ItemName} is Sold Out!");
+                                            Console.WriteLine("\t Please make another selection.");
                                         }
                                     }
                                 }
                                 else if (selection == "3")
                                 {
-                                    Console.WriteLine($"Your change is {vm.Balance}");
+                                    Console.WriteLine($"\t Your change is {vm.Balance}");
                                     vm.EndTransaction();
                                     menu2 = 2;
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Please select again");
+                                    Console.WriteLine($"\t Your selection is invalad, Please select again");
                                 }
                             }
                         }
                     }
-                    //Make menu- give choices between 1)Feed Money 2)Select Product 3) Finish Transaction 
                     else if (choice == "3")
                     {
-                        Console.WriteLine("Thank you for using the best vending machine on the planet!");
+                        Console.WriteLine("\t Thank you for using the best vending machine on the planet!");
                         variable = 2;
                     }
                     else if (choice == "4")
@@ -175,42 +158,9 @@ namespace Capstone.Classes
                             int quant = 5 - (vm.inventory[item.Key].Quantity);
                             Console.WriteLine($"{vm.inventory[item.Key].ItemName}, {quant}");
                             sales = sales + (quant * (vm.inventory[item.Key].Price));
-
-
                         }
-                        Console.WriteLine(sales);
-
-
-
-
-                        //string path = @"C:\Users\Student\git\c-module-1-capstone-team-2\19_Capstone\Capstone\bin\Debug\netcoreapp2.1\Log.txt";
-                        //using (StreamReader sr = new StreamReader(path))
-                        //{
-                        //    while(!sr.EndOfStream)
-                        //    {
-                        //        string x = sr.ReadLine();
-                        //        string[] stream = x.Split(" ");
-
-
-                        //        Dictionary<string, int> salesReport = new Dictionary<string, int>();
-                        //        int value = 1;
-                        //        foreach (string item in stream)
-                        //        {
-                        //            if (salesReport.ContainsKey(item))
-                        //            {
-                        //                salesReport[item] += 1;
-                        //            }
-                        //            else
-                        //            {
-                        //                salesReport.Add(item,value);
-                        //            }
-                        //        }
-                        //        foreach (var item in c)
-                        //        {
-
-                        //        }
-                        //    }
-                        //}
+                        Console.WriteLine("**********************************************************");
+                        Console.WriteLine($"\t Total Sales are: {sales:C}");
                     }
                 }
             }
