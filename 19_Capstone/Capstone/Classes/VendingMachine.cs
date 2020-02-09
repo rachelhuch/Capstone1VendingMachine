@@ -60,13 +60,14 @@ namespace Capstone.Classes
                 sw.WriteLine(output);
             }
         }
-
+        decimal amountInCents=0;
         int quarters;
         int dimes;
         int nickels;
         public void CoinChange()
         {
-            decimal amountInCents = Balance * 100;
+            amountInCents = 0;
+            amountInCents = Balance * 100;
 
             while (amountInCents > 0)
 
@@ -87,11 +88,19 @@ namespace Capstone.Classes
                     nickels++;
                     amountInCents = amountInCents - 5;
                 }
+                else
+                {
+                    amountInCents = 0;
+                }
                 
-
+               
                 
             }
-            Console.WriteLine($"\t\t\tYou'll receive {quarters} quarters, {dimes} dimes, and {nickels} nickels");
+            amountInCents = 0;
+
+
+            Console.WriteLine($"\t You'll receive {quarters} quarters, {dimes} dimes, and {nickels} nickels");
+            
         }
     }
 }

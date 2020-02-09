@@ -17,6 +17,7 @@ namespace Capstone.Classes
             while (variable == 1)
             {
                 Console.WriteLine();
+                Console.WriteLine("WELCOME TO THE VENDO -MATIC 800");
                 Console.WriteLine("*******************************");
                 Console.WriteLine("   Vending Machine Main Menu   ");
                 Console.WriteLine("*******************************");
@@ -149,14 +150,13 @@ namespace Capstone.Classes
                                 {
                                     Console.WriteLine($"\t Your change is {vm.Balance:C}");
                                     vm.CoinChange();
-                                   
-
+                                    
                                     vm.EndTransaction();
                                     menu2 = 2;
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"\t ****Your selection is invalad, Please select again****");
+                                    Console.WriteLine($"\t ****Your selection is invalid, Please select again****");
                                 }
                             }
                         }
