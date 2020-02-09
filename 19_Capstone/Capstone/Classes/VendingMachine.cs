@@ -43,6 +43,8 @@ namespace Capstone.Classes
             WriteToLog($"GIVECHANGE {Balance}, $0.00");
             Balance = 0;
         }
+       
+
         public VendingMachine()
         {
             Load(file);
@@ -58,6 +60,40 @@ namespace Capstone.Classes
                 sw.WriteLine(output);
             }
         }
+
+        int quarters;
+        int dimes;
+        int nickels;
+        public void CoinChange()
+        {
+            decimal amountInCents = Balance * 100;
+
+            while (amountInCents > 0)
+
+            {
+                if (amountInCents >= 25)
+                {
+                    quarters++;
+                    amountInCents =
+                        amountInCents - 25;
+                }
+                else if (amountInCents >= 10)
+                {
+                    dimes++;
+                    amountInCents = amountInCents - 10;
+                }
+                else if (amountInCents >= 5)
+                {
+                    nickels++;
+                    amountInCents = amountInCents - 5;
+                }
+                
+
+                
+            }
+            Console.WriteLine($"\t\t\tYou'll receive {quarters} quarters, {dimes} dimes, and {nickels} nickels");
+        }
     }
 }
+
 

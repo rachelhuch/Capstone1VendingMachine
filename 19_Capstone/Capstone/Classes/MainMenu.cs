@@ -148,6 +148,9 @@ namespace Capstone.Classes
                                 else if (selection == "3")
                                 {
                                     Console.WriteLine($"\t Your change is {vm.Balance:C}");
+                                    vm.CoinChange();
+                                   
+
                                     vm.EndTransaction();
                                     menu2 = 2;
                                 }
