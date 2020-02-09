@@ -151,7 +151,9 @@ namespace Capstone.Classes
                                     Console.WriteLine($"\t Your change is {vm.Balance:C}");
                                     vm.CoinChange();
                                     
+                                    
                                     vm.EndTransaction();
+                                    vm.Balance = 0;
                                     menu2 = 2;
                                 }
                                 else

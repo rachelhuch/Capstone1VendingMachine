@@ -66,42 +66,38 @@ namespace Capstone.Classes
         int nickels;
         public void CoinChange()
         {
+            
             amountInCents = 0;
             amountInCents = Balance * 100;
-
             while (amountInCents > 0)
 
             {
                 if (amountInCents >= 25)
                 {
                     quarters++;
-                    amountInCents =
-                        amountInCents - 25;
+                    amountInCents =amountInCents - 25;
                 }
                 else if (amountInCents >= 10)
                 {
                     dimes++;
-                    amountInCents = amountInCents - 10;
+                    amountInCents -=amountInCents;
                 }
                 else if (amountInCents >= 5)
                 {
                     nickels++;
                     amountInCents = amountInCents - 5;
                 }
-                else
-                {
-                    amountInCents = 0;
-                }
-                
+
+
                
-                
             }
-            amountInCents = 0;
-
-
-            Console.WriteLine($"\t You'll receive {quarters} quarters, {dimes} dimes, and {nickels} nickels");
             
+            Console.WriteLine($"\t You'll receive {quarters} quarters, {dimes} dimes, and {nickels} nickels");
+            nickels = 0;
+            dimes = 0;
+            quarters = 0;
         }
+        
     }
 }
 
