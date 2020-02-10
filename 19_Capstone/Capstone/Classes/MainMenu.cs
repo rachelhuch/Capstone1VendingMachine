@@ -122,19 +122,19 @@ namespace Capstone.Classes
                                                 //chomp chop stuff
                                                 if (vm.inventory[keyNumber].ItemCategory == "Chip")
                                                 {
-                                                    Console.WriteLine("\t Crunch Crunch, Yum!");
+                                                    Console.WriteLine("\t\t Crunch Crunch, Yum!");
                                                 }
                                                 if (vm.inventory[keyNumber].ItemCategory == "Candy")
                                                 {
-                                                    Console.WriteLine("\t Munch Munch, Yum!");
+                                                    Console.WriteLine("\t\t Munch Munch, Yum!");
                                                 }
                                                 if (vm.inventory[keyNumber].ItemCategory == "Drink")
                                                 {
-                                                    Console.WriteLine("\t Glug Glug, Yum!");
+                                                    Console.WriteLine("\t\t Glug Glug, Yum!");
                                                 }
                                                 if (vm.inventory[keyNumber].ItemCategory == "Gum")
                                                 {
-                                                    Console.WriteLine("\t Chew Chew, Yum!");
+                                                    Console.WriteLine("\t\t Chew Chew, Yum!");
                                                 }
                                                 Console.WriteLine($"\t Your new balance is {vm.Balance:C}");
                                             }
